@@ -1,6 +1,7 @@
-int PUL = 7; //define Pulse pin
-int DIR = 6; //define Direction pin
-int ENA = 5; //define Enable Pin
+
+int PUL = A0; //define Pulse pin
+int DIR = A1; //define Direction pin
+int ENA = A2; //define Enable Pin
 void setup() {
   pinMode (PUL, OUTPUT);
   pinMode (DIR, OUTPUT);
@@ -11,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-
+  digitalWrite(ENA, HIGH);
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
 
@@ -32,8 +33,6 @@ void loop() {
 
       for (int i = 0; i < 1000; i++) //Forward 5000 steps
       {
-        digitalWrite(DIR, LOW);
-        digitalWrite(ENA, HIGH);
         digitalWrite(PUL, HIGH);
         delayMicroseconds(200);
         digitalWrite(PUL, LOW);
