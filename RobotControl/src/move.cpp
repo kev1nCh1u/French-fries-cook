@@ -5,8 +5,11 @@ int PUL; //define Pulse pin
 int DIR; //define Direction pin
 int ENA; //define Enable Pin
 };
-stepmotor x ={A0,A1,A2};
-stepmotor y, z, e, t;
+stepmotor x = {A0,A1,38};
+stepmotor y = {A6,A7,A2};
+stepmotor z = {A6,A7,A2};
+stepmotor e = {A6,A7,A2};
+stepmotor t = {A6,A7,A2};
 void setup() {
   pinMode (x.PUL, OUTPUT);
   pinMode (x.DIR, OUTPUT);
@@ -17,10 +20,7 @@ void setup() {
 }
 
 void loop() {
-  
-  x.PUL = A0;
-  x.DIR = A1;
-  x.ENA = A2;
+
   digitalWrite(x.ENA, HIGH);
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
