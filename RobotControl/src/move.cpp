@@ -1,26 +1,27 @@
+#include <Arduino.h>
 
 struct stepmotor{
-const int PUL; //define Pulse pin
-const int DIR; //define Direction pin
-const int ENA; //define Enable Pin
+int PUL; //define Pulse pin
+int DIR; //define Direction pin
+int ENA; //define Enable Pin
 };
-
+stepmotor x ={A0,A1,A2};
+stepmotor y, z, e, t;
 void setup() {
-  pinMode (PUL, OUTPUT);
-  pinMode (DIR, OUTPUT);
-  pinMode (ENA, OUTPUT);
+  pinMode (x.PUL, OUTPUT);
+  pinMode (x.DIR, OUTPUT);
+  pinMode (x.ENA, OUTPUT);
   // initialize serial:
   Serial.begin(9600);
 
 }
 
 void loop() {
-  stepmotor x = {A0,A1,A2};
-  stepmotor y, z, e, t;
-//x.PUL = A0;
-//x.DIR = A1;
-//x.ENA = A2;
-  digitalWrite(ENA, HIGH);
+  
+  x.PUL = A0;
+  x.DIR = A1;
+  x.ENA = A2;
+  digitalWrite(x.ENA, HIGH);
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
 
@@ -33,17 +34,17 @@ void loop() {
       Serial.println(red);
 
       if (red >= 0) {
-        digitalWrite(DIR, HIGH);
+        digitalWrite(x.DIR, HIGH);
       } else {
-        digitalWrite(DIR, LOW);
+        digitalWrite(x.DIR, LOW);
         red *= -1;
       }
 
       for (int i = 0; i < 1000; i++) //Forward 5000 steps
       {
-        digitalWrite(PUL, HIGH);
+        digitalWrite(x.PUL, HIGH);
         delayMicroseconds(200);
-        digitalWrite(PUL, LOW);
+        digitalWrite(x.PUL, LOW);
         delayMicroseconds(200);
       }
     }
