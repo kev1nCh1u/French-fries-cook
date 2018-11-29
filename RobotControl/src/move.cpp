@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <botcon.h>
 
 struct stepmotor{
 int PUL; //define Pulse pin
@@ -11,8 +12,6 @@ stepmotor y = {A6,A7,A2,};
 stepmotor z = {46,48,A8,};
 stepmotor e = {26,28,24,};
 stepmotor t = {36,34,30,};
-
-void move(char Aix, int PUL, int DIR, int step);
 
 void setup() {
   pinMode (x.PUL, OUTPUT);
@@ -61,23 +60,3 @@ void loop() {
   }
 }
 
-void move(char Aix, int PUL, int DIR, int step){
-      Serial.print(Aix);
-      Serial.print(step);
-      Serial.println("\t");
-
-      if (PUL >= 0) {
-        digitalWrite(DIR, HIGH);
-      } else {
-        digitalWrite(DIR, LOW);
-        step *= -1;
-      }
-
-      for (int i = 0; i < step; i++) //Forward 5000 steps
-      {
-        digitalWrite(PUL, HIGH);
-        delayMicroseconds(200);
-        digitalWrite(PUL, LOW);
-        delayMicroseconds(200);
-      }
-}
