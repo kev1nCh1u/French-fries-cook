@@ -2,12 +2,13 @@
 #include <botcon.h>
 
 struct stepmotor{
-char AIX;
-int PUL; //define Pulse pin
-int DIR; //define Direction pin
-int ENA; //define Enable Pin
+const char AIX;
+const int PUL; //define Pulse pin
+const int DIR; //define Direction pin
+const int ENA; //define Enable Pin
 int step;
-}sm[5] = {{'x',A0,A1,38,},{'y',A6,A7,A2,},{'z',46,48,A8,},{'e',26,28,24,},{'t',36,34,30,}};
+};
+stepmotor sm[5] = {{'x',A0,A1,38,},{'y',A6,A7,A2,},{'z',46,48,A8,},{'e',26,28,24,},{'t',36,34,30,}};
 
 void setup() {
   pinMode (sm[0].PUL, OUTPUT);
@@ -27,6 +28,7 @@ void setup() {
   pinMode (sm[4].ENA, OUTPUT);
   // initialize serial:
   Serial.begin(9600);
+  Serial.println("HELLOWORD!!!!!!!!!!!!!!!!!!!!");
 }
 
 void loop() {
