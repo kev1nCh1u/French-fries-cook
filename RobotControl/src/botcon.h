@@ -1,1 +1,1 @@
-void move(char Aix, int PUL, int DIR, int step);
+void move(struct stepmotor sm[]);

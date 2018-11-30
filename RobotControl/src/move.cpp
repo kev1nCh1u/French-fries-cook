@@ -2,60 +2,52 @@
 #include <botcon.h>
 
 struct stepmotor{
+char AIX;
 int PUL; //define Pulse pin
 int DIR; //define Direction pin
 int ENA; //define Enable Pin
 int step;
-};
-stepmotor x = {A0,A1,38,};
-stepmotor y = {A6,A7,A2,};
-stepmotor z = {46,48,A8,};
-stepmotor e = {26,28,24,};
-stepmotor t = {36,34,30,};
+}sm[5] = {{'x',A0,A1,38,},{'y',A6,A7,A2,},{'z',46,48,A8,},{'e',26,28,24,},{'t',36,34,30,}};
 
 void setup() {
-  pinMode (x.PUL, OUTPUT);
-  pinMode (x.DIR, OUTPUT);
-  pinMode (x.ENA, OUTPUT);
-  pinMode (y.PUL, OUTPUT);
-  pinMode (y.DIR, OUTPUT);
-  pinMode (y.ENA, OUTPUT);
-  pinMode (z.PUL, OUTPUT);
-  pinMode (z.DIR, OUTPUT);
-  pinMode (z.ENA, OUTPUT);
-  pinMode (e.PUL, OUTPUT);
-  pinMode (e.DIR, OUTPUT);
-  pinMode (e.ENA, OUTPUT);
-  pinMode (t.PUL, OUTPUT);
-  pinMode (t.DIR, OUTPUT);
-  pinMode (t.ENA, OUTPUT);
+  pinMode (sm[0].PUL, OUTPUT);
+  pinMode (sm[0].DIR, OUTPUT);
+  pinMode (sm[0].ENA, OUTPUT);
+  pinMode (sm[1].PUL, OUTPUT);
+  pinMode (sm[1].DIR, OUTPUT);
+  pinMode (sm[1].ENA, OUTPUT);
+  pinMode (sm[2].PUL, OUTPUT);
+  pinMode (sm[2].DIR, OUTPUT);
+  pinMode (sm[2].ENA, OUTPUT);
+  pinMode (sm[3].PUL, OUTPUT);
+  pinMode (sm[3].DIR, OUTPUT);
+  pinMode (sm[3].ENA, OUTPUT);
+  pinMode (sm[4].PUL, OUTPUT);
+  pinMode (sm[4].DIR, OUTPUT);
+  pinMode (sm[4].ENA, OUTPUT);
   // initialize serial:
   Serial.begin(9600);
 }
 
 void loop() {
-  digitalWrite(x.ENA, HIGH);
-  digitalWrite(y.ENA, HIGH);
-  digitalWrite(z.ENA, HIGH);
-  digitalWrite(e.ENA, HIGH);
-  digitalWrite(t.ENA, HIGH);
+  digitalWrite(sm[0].ENA, HIGH);
+  digitalWrite(sm[1].ENA, HIGH);
+  digitalWrite(sm[2].ENA, HIGH);
+  digitalWrite(sm[3].ENA, HIGH);
+  digitalWrite(sm[4].ENA, HIGH);
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
 
     // look for the next valid integer in the incoming serial stream:
-    x.step = Serial.parseInt();
+    sm[0].step = Serial.parseInt();
     // do it again:
-    y.step = Serial.parseInt();
-    z.step = Serial.parseInt();
-    e.step = Serial.parseInt();
-    t.step = Serial.parseInt();
-    // look for the newline. That's the end of your sentence:
+    sm[1].step = Serial.parseInt();
+    sm[2].step = Serial.parseInt();
+    sm[3].step = Serial.parseInt();
+    sm[4].step = Serial.parseInt();
+    // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
-      move('x', x.PUL, x.DIR, x.step);
-      move('y', y.PUL, y.DIR, y.step);
-      move('z', z.PUL, z.DIR, z.step);
-      move('e', e.PUL, e.DIR, e.step);
-      move('t', t.PUL, t.DIR, t.step);
+      move(sm);
     }
   }
 }

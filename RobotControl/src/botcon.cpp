@@ -1,23 +1,40 @@
 #include <Arduino.h>
 #include <botcon.h>
 
-void move(char Aix, int PUL, int DIR, int step){
-      Serial.print(Aix);
-      Serial.print(step);
-      Serial.println("\t");
+struct stepmotor{
+char AIX;
+int PUL; //define Pulse pin
+int DIR; //define Direction pin
+int ENA; //define Enable Pin
+int step;
+};
 
-      if (PUL >= 0) {
-        digitalWrite(DIR, HIGH);
-      } else {
-        digitalWrite(DIR, LOW);
-        step *= -1;
+void move(struct stepmotor sm[]){
+  int i, j;
+      for (i = 0; i < 5; i++){
+        Serial.print(sm[i].AIX);
+        Serial.print(sm[i].step);
+        Serial.println("\t");
+
+        if (sm[i].PUL >= 0) {
+          digitalWrite(sm[i].DIR, HIGH);
+        } else {
+          digitalWrite(sm[i].DIR, LOW);
+          sm[i].step *= -1;
+        }
       }
-
-      for (int i = 0; i < step; i++) //Forward 5000 steps
-      {
-        digitalWrite(PUL, HIGH);
-        delayMicroseconds(200);
-        digitalWrite(PUL, LOW);
-        delayMicroseconds(200);
+      while(!j){
+        j = 1;
+        for (i = 0; i < 5; i++) //Forward 5000 steps
+        {
+          if(sm[i].step != 0){
+            digitalWrite(sm[i].PUL, HIGH);
+            delayMicroseconds(200);
+            digitalWrite(sm[i].PUL, LOW);
+            delayMicroseconds(200);
+            sm[i].step --;
+            j = 0;
+          }
+        }
       }
 }
