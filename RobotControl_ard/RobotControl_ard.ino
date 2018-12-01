@@ -27,15 +27,16 @@ void setup() {
   pinMode (sm[4].ENA, OUTPUT);
   // initialize serial:
   Serial.begin(9600);
-  Serial.println("HELLOWORD!!!!!!!!!!!!!!!!!!!!");
-}
-
-void loop() {
+  Serial.println("HELLOWORD!!!!!!!!!!!!!!!!!!!!");  
   digitalWrite(sm[0].ENA, HIGH);
   digitalWrite(sm[1].ENA, HIGH);
   digitalWrite(sm[2].ENA, HIGH);
   digitalWrite(sm[3].ENA, HIGH);
   digitalWrite(sm[4].ENA, HIGH);
+}
+
+void loop() {
+
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
 
