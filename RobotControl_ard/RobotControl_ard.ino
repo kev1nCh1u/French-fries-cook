@@ -5,7 +5,7 @@ const char AIX;
 const int PUL; //define Pulse pin
 const int DIR; //define Direction pin
 const int ENA; //define Enable Pin
-int step;
+int stp;
 };
 stepmotor sm[5] = {{'x',A0,A1,38,},{'y',A6,A7,A2,},{'z',46,48,A8,},{'e',26,28,24,},{'t',36,34,30,}};
 
@@ -40,12 +40,12 @@ void loop() {
   while (Serial.available() > 0) {
 
     // look for the next valid integer in the incoming serial stream:
-    sm[0].step = Serial.parseInt();
+    sm[0].stp = Serial.parseInt();
     // do it again:
-    sm[1].step = Serial.parseInt();
-    sm[2].step = Serial.parseInt();
-    sm[3].step = Serial.parseInt();
-    sm[4].step = Serial.parseInt();
+    sm[1].stp = Serial.parseInt();
+    sm[2].stp = Serial.parseInt();
+    sm[3].stp = Serial.parseInt();
+    sm[4].stp = Serial.parseInt();
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
       move(sm);
