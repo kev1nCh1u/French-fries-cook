@@ -15,9 +15,11 @@
   http://www.arduino.cc/en/Tutorial/StringToInt
 */
 
-String Str = "123456BBB";    // string to hold input
-char Cha = "";
-int i;
+String str = "";    // string to hold input
+char cha = "", pcha = "";
+byte gs;
+int incha, i;
+int x, y, z, e, t;
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -33,14 +35,20 @@ void setup() {
 void loop() {
   // Read serial input:
   while (Serial.available() > 0) {
-    Cha = Serial.read();
-    Str = i << 3;
-    Str += Cha;
-    
- //   if (Cha == 'G') 
-      // convert the incoming byte to a char and add it to the string:
-      Serial.println(Str);
-    
-  }
+    cha = Serial.read();
 
+    if (!(cha == '\n')) {
+      str += cha;
+      if (str == "G0 ") {
+        if (cha == 'X' || x) {
+          x = Serial.parseInt();
+        }
+      }
+    } else {
+      // convert the incoming byte to a char and add it to the string:
+      i = atoi(str.c_str());
+      Serial.println(x);
+      str = "";
+    }
+  }
 }

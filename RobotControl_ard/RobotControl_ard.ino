@@ -26,8 +26,8 @@ void setup() {
   pinMode (sm[4].DIR, OUTPUT);
   pinMode (sm[4].ENA, OUTPUT);
   // initialize serial:
-  Serial.begin(9600);
-  Serial.println("HELLOWORD!!!!!!!!!!!!!!!!!!!!");
+  Serial.begin(115200);
+  Serial.println("enter x y z e t");
 }
 
 void loop() {
@@ -48,7 +48,7 @@ void loop() {
     sm[4].stp = Serial.parseInt();
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
-      move(sm);
+      move(sm, 200);
     }
   }
 }

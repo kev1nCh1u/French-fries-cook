@@ -9,7 +9,7 @@ void loop() {
   while (Serial.available() > 0) {
 
     // look for the next valid integer in the incoming serial stream:
-    int red = Serial.parseInt();
+    int red = 
     // do it again:
 
     // look for the newline. That's the end of your sentence:

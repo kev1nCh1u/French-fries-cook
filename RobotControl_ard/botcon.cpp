@@ -10,7 +10,7 @@ int stp;
 int i, j=0;
 
   
-void move(struct stepmotor sm[]){
+void move(struct stepmotor sm[], int spe){
 
       for (i = 0; i < 5; i++){
         Serial.print(sm[i].AIX);
@@ -30,9 +30,9 @@ void move(struct stepmotor sm[]){
         {
           if(sm[i].stp != 0){
             digitalWrite(sm[i].PUL, HIGH);
-            delayMicroseconds(200);
+            delayMicroseconds(spe);
             digitalWrite(sm[i].PUL, LOW);
-            delayMicroseconds(200);
+            delayMicroseconds(spe);
             sm[i].stp --;
             j = 0;
             Serial.print(sm[i].AIX);
