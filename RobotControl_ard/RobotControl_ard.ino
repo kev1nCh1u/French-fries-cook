@@ -6,15 +6,15 @@ struct stepmotor {
   const int PUL; //define Pulse pin
   const int DIR; //define Direction pin
   const int ENA; //define Enable Pin
-  const int MAXI;
-  int now, stp;
+  const long MAXI;
+  long now, stp;
 };
 stepmotor sm[5] = {
-  {'X', A0, A1, 38, 1000, 0},
-  {'Y', A6, A7, A2, 1000, 0},
-  {'Z', 46, 48, A8, 1000, 0},
-  {'E', 26, 28, 24, 1000, 0},
-  {'T', 36, 34, 30, 1000, 0}
+  {'X', A0, A1, 38, 8000, 0},
+  {'Y', A6, A7, A2, 1500, 0},
+  {'Z', 46, 48, A8, 6000, 0},
+  {'E', 26, 28, 24, 20000, 0},
+  {'T', 36, 34, 30, 10000, 0}
 };
 
 
@@ -61,14 +61,14 @@ void loop() {
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
       for (i = 0; i < 5; i++) {
-        j = sm[i].stp;
-        sm[i].stp = sm[i].stp - sm[i].now;
-        sm[i].now = j;
         if (sm[i].stp > sm[i].MAXI) {
           sm[i].stp = sm[i].MAXI;
         } else if (sm[i].stp < (sm[i].MAXI * -1)) {
           sm[i].stp = sm[i].MAXI * -1;
         }
+        j = sm[i].stp;
+        sm[i].stp = sm[i].stp - sm[i].now;
+        sm[i].now = j;
       }
       move(sm, 200);
       Serial.print("now:");
