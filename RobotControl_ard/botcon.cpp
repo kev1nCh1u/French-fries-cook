@@ -9,8 +9,6 @@ struct stepmotor {
   int now, stp;
 };
 
-
-
 void move(struct stepmotor sm[], int spe) {
   int i, j = 0;
   for (i = 0; i < 5; i++) {
