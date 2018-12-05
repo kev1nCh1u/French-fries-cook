@@ -5,19 +5,22 @@ struct stepmotor {
   const int PUL; //define Pulse pin
   const int DIR; //define Direction pin
   const int ENA; //define Enable Pin
-  const long MAXI;
-  long now, stp;
+  const int MAXI, QDEG;
+  float deg;
+  int now;
+  long prestp;
 };
 stepmotor sm[5] = {
-  {'X', A0, A1, 38, 8000, 0},
-  {'Y', A6, A7, A2, 1500, 0},
-  {'Z', 46, 48, A8, 6000, 0},
-  {'E', 26, 28, 24, 20000, 0},
-  {'T', 36, 34, 30, 10000, 0}
+  {'X', A0, A1, 38, 8000, 5000, 0, 0},
+  {'Y', A6, A7, A2, 1500, 700, 0, 0},
+  {'Z', 46, 48, A8, 6000, 4000, 0, 0},
+  {'E', 26, 28, 24, 20000, 10000, 0, 0},
+  {'T', 36, 34, 30, 10000, 5000, 0, 0}
 };
+int i, j;
 
 void setup() {
-  pinMode (sm[0].PUL, OUTPUT);
+/*  pinMode (sm[0].PUL, OUTPUT);
   pinMode (sm[0].DIR, OUTPUT);
   pinMode (sm[0].ENA, OUTPUT);
   pinMode (sm[1].PUL, OUTPUT);
@@ -38,44 +41,54 @@ void setup() {
   digitalWrite(sm[2].ENA, HIGH);
   digitalWrite(sm[3].ENA, HIGH);
   digitalWrite(sm[4].ENA, HIGH);
+*/
   Serial.begin(115200);
-  Serial.println("enter x y z e t\n");
+  Serial.println("Enter X Y Z E T\n");
+  Serial.print("Now: ");
+  for (i = 0; i < 5; i++) {
+    pinMode (sm[i].PUL, OUTPUT);
+    pinMode (sm[i].DIR, OUTPUT);
+    pinMode (sm[i].ENA, OUTPUT);
+    digitalWrite(sm[i].ENA, HIGH);
+    Serial.print(sm[i].AIX);
+    Serial.print(sm[i].now);
+    Serial.print(" ");
+  }
+  Serial.println();
 }
 
 void loop() {
 
-  int i, j;
+
   // put your main code here, to run repeatedly:
   while (Serial.available() > 0) {
 
     // look for the next valid integer in the incoming serial stream:
-    sm[0].stp = Serial.parseInt();
+//  for (i = 0; i < 5; i++) {
+//    sm[i].prestp = Serial.parseInt();
     // do it again:
-    sm[1].stp = Serial.parseInt();
-    sm[2].stp = Serial.parseInt();
-    sm[3].stp = Serial.parseInt();
-    sm[4].stp = Serial.parseInt();
-
+  for (i = 0; i < 5; i++) {
+    sm[i].deg = Serial.parseFloat();
+    sm[i].prestp = map((int)(sm[i].deg*100), 0, 90*100, 0, sm[i].QDEG);
+  }
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
-      for (i = 0; i < 5; i++) {
-        if (sm[i].stp > sm[i].MAXI) {
-          sm[i].stp = sm[i].MAXI;
-        } else if (sm[i].stp < (sm[i].MAXI * -1)) {
-          sm[i].stp = sm[i].MAXI * -1;
-        }
-        j = sm[i].stp;
-        sm[i].stp = sm[i].stp - sm[i].now;
-        sm[i].now = j;
-      }
-      move(sm, 200);
-      Serial.print("now:");
+      move5(sm, 200);
+      Serial.print("Now: ");
       for (i = 0; i < 5; i++) {
         Serial.print(sm[i].AIX);
         Serial.print(sm[i].now);
         Serial.print(" ");
       }
       Serial.println();
+      Serial.print("NowDeg: ");
+      for (i = 0; i < 5; i++) {
+        Serial.print(sm[i].AIX);
+        Serial.print(sm[i].deg);
+        Serial.print(" ");
+      }
+      Serial.println();
+
     }
   }
 }

@@ -4,6 +4,6 @@
 #include "Arduino.h"
 #include <SPI.h>
 
-void move(struct stepmotor sm[], int spe);
+void move5(struct stepmotor sm[], int spe);
 
 #endif
