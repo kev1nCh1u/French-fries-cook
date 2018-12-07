@@ -11,37 +11,15 @@ struct stepmotor {
   long prestp;
 };
 stepmotor sm[5] = {
-  {'X', A0, A1, 38, 8000, 5000, 0, 0},
-  {'Y', A6, A7, A2, 1500, 700, 0, 0},
+  {'X', A0, A1, 38, 8000, 9000, 0, 0},
+  {'Y', A6, A7, A2, 3000, 1500, 0, 0},
   {'Z', 46, 48, A8, 6000, 4000, 0, 0},
-  {'E', 26, 28, 24, 20000, 10000, 0, 0},
-  {'T', 36, 34, 30, 10000, 5000, 0, 0}
+  {'E', 26, 28, 24, 10000, 10000, 0, 0},
+  {'T', 36, 34, 30, 10000, 8000, 0, 0}
 };
 int i, j;
 
 void setup() {
-/*  pinMode (sm[0].PUL, OUTPUT);
-  pinMode (sm[0].DIR, OUTPUT);
-  pinMode (sm[0].ENA, OUTPUT);
-  pinMode (sm[1].PUL, OUTPUT);
-  pinMode (sm[1].DIR, OUTPUT);
-  pinMode (sm[1].ENA, OUTPUT);
-  pinMode (sm[2].PUL, OUTPUT);
-  pinMode (sm[2].DIR, OUTPUT);
-  pinMode (sm[2].ENA, OUTPUT);
-  pinMode (sm[3].PUL, OUTPUT);
-  pinMode (sm[3].DIR, OUTPUT);
-  pinMode (sm[3].ENA, OUTPUT);
-  pinMode (sm[4].PUL, OUTPUT);
-  pinMode (sm[4].DIR, OUTPUT);
-  pinMode (sm[4].ENA, OUTPUT);
-  // initialize serial:
-  digitalWrite(sm[0].ENA, HIGH);
-  digitalWrite(sm[1].ENA, HIGH);
-  digitalWrite(sm[2].ENA, HIGH);
-  digitalWrite(sm[3].ENA, HIGH);
-  digitalWrite(sm[4].ENA, HIGH);
-*/
   Serial.begin(115200);
   Serial.println("Enter X Y Z E T\n");
   Serial.print("Now: ");
@@ -64,8 +42,9 @@ void loop() {
   while (Serial.available() > 0) {
 
     // look for the next valid integer in the incoming serial stream:
-//  for (i = 0; i < 5; i++) {
-//    sm[i].prestp = Serial.parseInt();
+/*  for (i = 0; i < 5; i++) {
+    sm[i].prestp = Serial.parseInt();
+  }*/
     // do it again:
   for (i = 0; i < 5; i++) {
     sm[i].deg = Serial.parseFloat();
