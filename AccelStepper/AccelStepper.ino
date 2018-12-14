@@ -2,32 +2,37 @@
 #include <AccelStepper.h>
 #include <MultiStepper.h>
 
-struct stepmotor {
-  const char AIX;
-  const int PUL; //define Pulse pin
-  const int DIR; //define Direction pin
-  const int ENA; //define Enable Pin
-  const int MAXI, QDEG;
-  float deg;
-  int now;
-  long prestp;
-};
-stepmotor sm[5] = {
-  {'X', A0, A1, 38, 8000, 9000, 0, 0},
-  {'Y', A6, A7, A2, 3000, 1500, 0, 0},
-  {'Z', 46, 48, A8, 6000, 4000, 0, 0},
-  {'E', 26, 28, 24, 10000, 10000, 0, 0},
-  {'T', 36, 34, 30, 10000, 8000, 0, 0}
-};
+#define X_PUL_PIN   A0
+#define X_DIR_PIN   A1
+#define X_ENA_PIN   38
 
+#define Y_PUL_PIN   A6
+#define Y_DIR_PIN   A7
+#define Y_ENA_PIN   A2
+#define Y_MIN_PIN   
+#define Y_MAX_PIN   
+
+#define Z_PUL_PIN   46
+#define Z_DIR_PIN   48
+#define Z_ENA_PIN   A8
+#define Z_MIN_PIN   
+#define Z_MAX_PIN   
+
+#define E_PUL_PIN   26
+#define E_DIR_PIN   26
+#define E_ENA_PIN   24
+
+#define T_PUL_PIN   36
+#define T_DIR_PIN   34
+#define T_ENA_PIN   30
 
 // EG X-Y position bed driven by 2 steppers
 // Alas its not possible to build an array of these with different pins for each :-(
-AccelStepper joint1(1, sm[0].PUL, sm[0].DIR);
-AccelStepper joint2(1, sm[1].PUL, sm[1].DIR);
-AccelStepper joint3(1, sm[2].PUL, sm[2].DIR);
-AccelStepper joint4(1, sm[3].PUL, sm[3].DIR);
-AccelStepper joint5(1, sm[4].PUL, sm[4].DIR);
+AccelStepper motorx(1, X_PUL_PIN, X_DIR_PIN);
+AccelStepper motory(1, Y_PUL_PIN, Y_DIR_PIN);
+AccelStepper motorz(1, Z_PUL_PIN, Z_DIR_PIN);
+AccelStepper motore(1, E_PUL_PIN, E_DIR_PIN);
+AccelStepper motort(1, T_PUL_PIN, T_DIR_PIN);
 
 
 
@@ -39,25 +44,36 @@ int i, j, k;
 void setup() {
   Serial.begin(115200);
 
-  // Configure each stepper
-  joint1.setMaxSpeed(200);
-  joint2.setMaxSpeed(200);
-  joint3.setMaxSpeed(200);
-  joint4.setMaxSpeed(200);
-  joint5.setMaxSpeed(200);
+  motorx.setMaxSpeed(200);
+  motory.setMaxSpeed(200);
+  motorz.setMaxSpeed(200);
+  motore.setMaxSpeed(200);
+  motort.setMaxSpeed(200);
 
+  motorx.setAcceleration(200);
+  motory.setAcceleration(200);
+  motorz.setAcceleration(200);
+  motore.setAcceleration(200);
+  motort.setAcceleration(200);
 
-  // Then give them to MultiStepper to manage
-  steppers.addStepper(joint1);
-  steppers.addStepper(joint2);
-  steppers.addStepper(joint3);
-  steppers.addStepper(joint4);
-  steppers.addStepper(joint5);
+  steppers.addStepper (motorx);
+  steppers.addStepper (motory);
+  steppers.addStepper (motorz);
+  steppers.addStepper (motore);
+  steppers.addStepper (motort);
 
-  for (i = 0; i < 5; i++) {
-    pinMode (sm[i].ENA, OUTPUT);
-    digitalWrite(sm[i].ENA, HIGH);
-  }
+  motorx.setEnablePin(X_ENA_PIN);
+  motory.setEnablePin(Y_ENA_PIN);
+  motorz.setEnablePin(Z_ENA_PIN);
+  motore.setEnablePin(E_ENA_PIN);
+  motort.setEnablePin(T_ENA_PIN);
+
+  motorx.enableOutputs ();
+  motory.enableOutputs ();
+  motorz.enableOutputs ();
+  motore.enableOutputs ();
+  motort.enableOutputs ();
+
 }
 
 void loop() {
