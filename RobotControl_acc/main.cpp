@@ -35,7 +35,7 @@ AccelStepper motorT(1, T_PUL_PIN, T_DIR_PIN);
 MultiStepper steppers;
 
 int i, j, k;
-long initial_homing;
+
 
 void setup() {
   Serial.begin(115200);
@@ -79,6 +79,7 @@ void setup() {
 
   Serial.print("Steppers is Homing . . .");
 
+  long initial_homing;
 //X homing
   initial_homing = 0;
 
@@ -103,8 +104,6 @@ void setup() {
   motorX.setMaxSpeed(1000.0);
   motorX.setAcceleration(1000.0);
 
-// Print out Instructions on the Serial Monitor at Start
-  Serial.println("Enter Travel distance (Positive for CW / Negative for CCW and Zero for back to Home): ");
 }
 
 void loop() {

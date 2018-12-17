@@ -9,7 +9,7 @@ void setup() {
 }
 
 void loop() {
-  for (int i=0; i<1000; i++)    //Forward 5000 steps
+  for (int i=0; i<5000; i++)    //Forward 5000 steps
   {
     digitalWrite(DIR,LOW);
     digitalWrite(ENA,HIGH);
@@ -18,7 +18,7 @@ void loop() {
     digitalWrite(PUL,LOW);
     delayMicroseconds(200);
   }
-  for (int i=0; i<1000; i++)   //Backward 5000 steps
+  for (int i=0; i<5000; i++)   //Backward 5000 steps
   {
     digitalWrite(DIR,HIGH);
     digitalWrite(ENA,HIGH);
