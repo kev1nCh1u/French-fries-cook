@@ -47,17 +47,17 @@ void setup() {
   steppers.addStepper (motorE);
   steppers.addStepper (motorT);
 
-  motorX.setMaxSpeed(1000.0);
-  motorY.setMaxSpeed(1000.0);
-  motorZ.setMaxSpeed(1000.0);
-  motorE.setMaxSpeed(1000.0);
-  motorT.setMaxSpeed(1000.0);
+  motorX.setMaxSpeed(1000);
+  motorY.setMaxSpeed(1000);
+  motorZ.setMaxSpeed(1000);
+  motorE.setMaxSpeed(1000);
+  motorT.setMaxSpeed(1000);
 
-  motorX.setAcceleration(10.0);
-  motorY.setAcceleration(10.0);
-  motorZ.setAcceleration(10.0);
-  motorE.setAcceleration(10.0);
-  motorT.setAcceleration(10.0);
+  motorX.setAcceleration(100);
+  motorY.setAcceleration(100);
+  motorZ.setAcceleration(100);
+  motorE.setAcceleration(100);
+  motorT.setAcceleration(100);
 
   Serial.println("Steppers is Homing . . .");
 
