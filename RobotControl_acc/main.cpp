@@ -15,7 +15,7 @@ struct stepmotor {
   long pos, deg;
 };
 stepmotor sm[5] = {
-  {'X', 8000, 9000, 0, 0},
+  {'X', 8000, 7000, 0, 0},
   {'Y', 3000, 1500, 0, 0},
   {'Z', 6000, 4000, 0, 0},
   {'E', 10000, 10000, 0, 0},
@@ -49,9 +49,9 @@ void setup() {
 
   motorX.setMaxSpeed(1000);
   motorY.setMaxSpeed(1000);
-  motorZ.setMaxSpeed(1000);
+  motorZ.setMaxSpeed(500);
   motorE.setMaxSpeed(1000);
-  motorT.setMaxSpeed(1000);
+  motorT.setMaxSpeed(500);
 
   motorX.setAcceleration(100);
   motorY.setAcceleration(100);

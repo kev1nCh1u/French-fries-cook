@@ -31,4 +31,30 @@
 #define T_ENA_PIN   30
 #define T_HOM_PIN   35
 
+pinMode(X_PUL_PIN,OUTPUT);
+pinMode(X_DIR_PIN,OUTPUT);
+pinMode(X_ENA_PIN,OUTPUT);
+pinMode(X_HOM_PIN,INPUT_PULLUP);
+
+pinMode(Y_PUL_PIN,OUTPUT);
+pinMode(Y_DIR_PIN,OUTPUT);
+pinMode(Y_ENA_PIN,OUTPUT);
+pinMode(Y_HOM_PIN,INPUT_PULLUP);
+
+pinMode(Z_PUL_PIN,OUTPUT);
+pinMode(Z_DIR_PIN,OUTPUT);
+pinMode(Z_ENA_PIN,OUTPUT);
+pinMode(Z_HOM_PIN,INPUT_PULLUP);
+
+pinMode(E_PUL_PIN,OUTPUT);
+pinMode(E_DIR_PIN,OUTPUT);
+pinMode(E_ENA_PIN,OUTPUT);
+pinMode(E_HOM_PIN,INPUT_PULLUP);
+
+pinMode(T_PUL_PIN,OUTPUT);
+pinMode(T_DIR_PIN,OUTPUT);
+pinMode(T_ENA_PIN,OUTPUT);
+pinMode(T_HOM_PIN,INPUT_PULLUP);
+
+
 #endif

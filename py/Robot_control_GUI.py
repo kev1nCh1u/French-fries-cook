@@ -1,7 +1,11 @@
 from tkinter import *#載入函示庫
+from time import sleep
 import math
+import serial
+ser = serial.Serial("COM8",115200)
 a=1
 Q=[]
+q=0
 root = Tk()#建立視窗
 #自行定義的函式
 e0 = StringVar() #變動文字變數
@@ -10,8 +14,19 @@ e2 = StringVar() #變動文字變數
 e3 = StringVar() #變動文字變數
 e4 = StringVar() #變動文字變數
 e5 = StringVar() #變動文字變數
+
+Q[q+1]ser.readline()
+Q[q+1]ser.readline()
+
 def out():
-    print(a)
+    cmd = e0 +' ' + e1 + ' ' + e2 + ' ' + e3 + ' ' + e4 + '\n'
+    ser.write(cmd.encode())
+    Q[q+1]ser.readline()
+    Q[q+1]ser.readline()
+    Q[q+1]ser.readline()
+    Q[q+1]ser.readline()
+    sleep(1)
+
 
 def enter():
     R=str(e5.get())
