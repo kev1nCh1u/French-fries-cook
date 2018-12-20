@@ -14,17 +14,29 @@ e2 = StringVar() #變動文字變數
 e3 = StringVar() #變動文字變數
 e4 = StringVar() #變動文字變數
 e5 = StringVar() #變動文字變數
+cmd = StringVar()
 
-Q[q+1]ser.readline()
-Q[q+1]ser.readline()
+#Q[q+1] = ser.readline()
+#Q[q+1] = ser.readline()
 
 def out():
-    cmd = e0 +' ' + e1 + ' ' + e2 + ' ' + e3 + ' ' + e4 + '\n'
+    cmd += e0
+    cmd += ' '
+    cmd += e1
+    cmd += ' '
+    cmd += e2
+    cmd += ' '
+    cmd += e3
+    cmd += ' '
+    cmd += e4
+    cmd += '\n'
+    
+    print(cmd)
     ser.write(cmd.encode())
-    Q[q+1]ser.readline()
-    Q[q+1]ser.readline()
-    Q[q+1]ser.readline()
-    Q[q+1]ser.readline()
+#    Q[q+1] = ser.readline()
+#    Q[q+1] = ser.readline()
+#    Q[q+1] = ser.readline()
+#    Q[q+1] = ser.readline()
     sleep(1)
 
 
