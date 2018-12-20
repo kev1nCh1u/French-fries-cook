@@ -20,17 +20,7 @@ cmd = StringVar()
 #Q[q+1] = ser.readline()
 
 def out():
-    cmd += e0
-    cmd += ' '
-    cmd += e1
-    cmd += ' '
-    cmd += e2
-    cmd += ' '
-    cmd += e3
-    cmd += ' '
-    cmd += e4
-    cmd += '\n'
-    
+    cmd = e0.get() + ' ' + e1.get() + ' ' + e2.get() + ' ' + e3.get() + ' ' + e4.get() + '\n'
     print(cmd)
     ser.write(cmd.encode())
 #    Q[q+1] = ser.readline()
@@ -350,23 +340,23 @@ c1=Button(root,text = "確定",command = enter,width=4)
 c1.grid(row=5, column=10)
 
 entry1 = Entry(root,textvariable = e0,width=5)
-e0.set(50.0)
+e0.set(0.0)
 entry1.grid(row=3, column=0)
 
 entry2 = Entry(root,textvariable = e1,width=5)
-e1.set(50.0)
+e1.set(0.0)
 entry2.grid(row=3, column=1)
 
 entry3 = Entry(root,textvariable = e2,width=5)
-e2.set(50.0)
+e2.set(0.0)
 entry3.grid(row=3, column=2)
 
 entry4 = Entry(root,textvariable = e3,width=5)
-e3.set(50.0)
+e3.set(0.0)
 entry4.grid(row=3, column=3)
 
 entry5 = Entry(root,textvariable = e4,width=5)
-e4.set(50.0)
+e4.set(0.0)
 entry5.grid(row=3, column=4)
 
 entry6 = Entry(root,textvariable = e5,width=15)
