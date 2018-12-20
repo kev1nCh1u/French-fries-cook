@@ -21,18 +21,22 @@ int i, j;
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Enter X Y Z E T\n");
-  Serial.print("Now: ");
+  Serial.println("Steppers is Homing . . .");
+
+
+
+  Serial.println("Ready...Enter X Y Z E T");
+
   for (i = 0; i < 5; i++) {
     pinMode (sm[i].PUL, OUTPUT);
     pinMode (sm[i].DIR, OUTPUT);
     pinMode (sm[i].ENA, OUTPUT);
     digitalWrite(sm[i].ENA, HIGH);
-    Serial.print(sm[i].AIX);
-    Serial.print(sm[i].now);
-    Serial.print(" ");
+//    Serial.print(sm[i].AIX);
+//    Serial.print(sm[i].now);
+//    Serial.print(" ");
   }
-  Serial.println();
+//  Serial.println();
 }
 
 void loop() {
@@ -66,7 +70,7 @@ void loop() {
         Serial.print(sm[i].deg);
         Serial.print(" ");
       }
-      Serial.println();
+      Serial.println("\n======MoveFinish=====");
 
     }
   }

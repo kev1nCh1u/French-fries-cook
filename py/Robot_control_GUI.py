@@ -2,7 +2,7 @@ from tkinter import *#載入函示庫
 from time import sleep
 import math
 import serial
-ser = serial.Serial("COM8",115200)
+ser = serial.Serial("COM3",115200)
 a=1
 Q=[]
 root = Tk()#建立視窗
@@ -17,7 +17,6 @@ cmd = StringVar()
 
 print(ser.readline())
 print(ser.readline())
-ser.readline()
 
 def out():
     cmd = e0.get() + ' ' + e1.get() + ' ' + e2.get() + ' ' + e3.get() + ' ' + e4.get() + '\n'

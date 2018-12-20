@@ -28,6 +28,31 @@ int i, j, k;
 void setup() {
   Serial.begin(115200);
 
+  pinMode(X_PUL_PIN, OUTPUT);
+  pinMode(X_DIR_PIN, OUTPUT);
+  pinMode(X_ENA_PIN, OUTPUT);
+  pinMode(X_HOM_PIN, INPUT_PULLUP);
+
+  pinMode(Y_PUL_PIN, OUTPUT);
+  pinMode(Y_DIR_PIN, OUTPUT);
+  pinMode(Y_ENA_PIN, OUTPUT);
+  pinMode(Y_HOM_PIN, INPUT_PULLUP);
+
+  pinMode(Z_PUL_PIN, OUTPUT);
+  pinMode(Z_DIR_PIN, OUTPUT);
+  pinMode(Z_ENA_PIN, OUTPUT);
+  pinMode(Z_HOM_PIN, INPUT_PULLUP);
+
+  pinMode(E_PUL_PIN, OUTPUT);
+  pinMode(E_DIR_PIN, OUTPUT);
+  pinMode(E_ENA_PIN, OUTPUT);
+  pinMode(E_HOM_PIN, INPUT_PULLUP);
+
+  pinMode(T_PUL_PIN, OUTPUT);
+  pinMode(T_DIR_PIN, OUTPUT);
+  pinMode(T_ENA_PIN, OUTPUT);
+  pinMode(T_HOM_PIN, INPUT_PULLUP);
+
   delay(5);
   motorX.setEnablePin(X_ENA_PIN);
   motorY.setEnablePin(Y_ENA_PIN);
@@ -49,13 +74,13 @@ void setup() {
 
   motorX.setMaxSpeed(1000);
   motorY.setMaxSpeed(1000);
-  motorZ.setMaxSpeed(500);
+  motorZ.setMaxSpeed(1000);
   motorE.setMaxSpeed(1000);
   motorT.setMaxSpeed(500);
 
   motorX.setAcceleration(100);
   motorY.setAcceleration(100);
-  motorZ.setAcceleration(100);
+  motorZ.setAcceleration(2000);
   motorE.setAcceleration(100);
   motorT.setAcceleration(100);
 
@@ -63,7 +88,7 @@ void setup() {
 
 
 
-  Serial.println("Ready...Enter X Y Z E T\n");
+  Serial.println("Ready...Enter X Y Z E T");
 
 }
 
@@ -81,7 +106,7 @@ void loop() {
       sm[i].deg = Serial.parseFloat();
       sm[i].pos = map((int)(sm[i].deg * 100), 0, 90 * 100, 0, sm[i].QDEG);
     }
-    
+
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
 

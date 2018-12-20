@@ -14,11 +14,11 @@ struct stepmotor {
 void move5(struct stepmotor sm[], int spe) {
   int i, j = 0;
   
-  Serial.print("MoveTo: ");
+//  Serial.print("MoveTo: ");
   for (i = 0; i < 5; i++) {
-    Serial.print(sm[i].AIX);
-    Serial.print(sm[i].prestp);
-    Serial.print(" ");
+//    Serial.print(sm[i].AIX);
+//    Serial.print(sm[i].prestp);
+//    Serial.print(" ");
       
     if (sm[i].prestp > sm[i].MAXI) {
       sm[i].prestp = sm[i].MAXI;
@@ -27,10 +27,10 @@ void move5(struct stepmotor sm[], int spe) {
         sm[i].prestp = sm[i].MAXI * -1;
     }
   }
-  Serial.println();
+//  Serial.println();
   while (!(j)) {
     j = 1;
-    Serial.print("Moving: ");
+//    Serial.print("Moving: ");
     for (i = 0; i < 5; i++) //Forward 5000 steps
     {
       if (sm[i].prestp != sm[i].now) {
@@ -47,12 +47,12 @@ void move5(struct stepmotor sm[], int spe) {
           sm[i].now --;
         }
         j = 0;
-        Serial.print(sm[i].AIX);
-        Serial.print(sm[i].now);
-        Serial.print(" ");
+//        Serial.print(sm[i].AIX);
+//        Serial.print(sm[i].now);
+//        Serial.print(" ");
       }
     } 
-    Serial.println();
+//    Serial.println();
   }
-  Serial.println();
+// Serial.println();
 }
