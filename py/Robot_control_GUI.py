@@ -5,7 +5,6 @@ import serial
 ser = serial.Serial("COM8",115200)
 a=1
 Q=[]
-q=0
 root = Tk()#建立視窗
 #自行定義的函式
 e0 = StringVar() #變動文字變數
@@ -16,17 +15,21 @@ e4 = StringVar() #變動文字變數
 e5 = StringVar() #變動文字變數
 cmd = StringVar()
 
-#Q[q+1] = ser.readline()
-#Q[q+1] = ser.readline()
+print(ser.readline())
+print(ser.readline())
+ser.readline()
 
 def out():
     cmd = e0.get() + ' ' + e1.get() + ' ' + e2.get() + ' ' + e3.get() + ' ' + e4.get() + '\n'
     print(cmd)
     ser.write(cmd.encode())
-#    Q[q+1] = ser.readline()
-#    Q[q+1] = ser.readline()
-#    Q[q+1] = ser.readline()
-#    Q[q+1] = ser.readline()
+    print(ser.readline())
+    print(ser.readline())
+    print(ser.readline())
+    Q.append(e1.get())
+    Label(root,text = Q)
+    
+#     ser.readline()
     sleep(1)
 
 
