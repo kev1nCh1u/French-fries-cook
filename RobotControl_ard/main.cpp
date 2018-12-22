@@ -56,7 +56,7 @@ void loop() {
   }
     // look for the newlinsm[3]. That's the end of your sentence:
     if (Serial.read() == '\n') {
-      move5(sm, 200);
+      move5(sm, 500);
       Serial.print("Now: ");
       for (i = 0; i < 5; i++) {
         Serial.print(sm[i].AIX);
