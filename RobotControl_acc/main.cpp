@@ -72,10 +72,16 @@ void setup() {
   steppers.addStepper (motorE);
   steppers.addStepper (motorT);
 
-  motorX.setMaxSpeed(1000);
-  motorY.setMaxSpeed(1000);
-  motorZ.setMaxSpeed(1000);
-  motorE.setMaxSpeed(1000);
+  motorX.setMinPulseWidth(20);
+  motorY.setMinPulseWidth(20);
+  motorZ.setMinPulseWidth(20);
+  motorE.setMinPulseWidth(20);
+  motorT.setMinPulseWidth(20);
+
+  motorX.setMaxSpeed(500);
+  motorY.setMaxSpeed(500);
+  motorZ.setMaxSpeed(500);
+  motorE.setMaxSpeed(500);
   motorT.setMaxSpeed(500);
 
   motorX.setAcceleration(100);
