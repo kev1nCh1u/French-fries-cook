@@ -2,7 +2,7 @@ from tkinter import *#載入函示庫
 from time import sleep
 import math
 import serial
-ser = serial.Serial("COM3",115200)
+ser = serial.Serial("COM5",115200)
 a=1
 Q=[]
 root = Tk()#建立視窗
